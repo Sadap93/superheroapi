@@ -25,13 +25,15 @@ const statToEmoji = {
   combat: '⚔️',
 }
 
+
 const showHeroInfo = (character) => {
+  const keys = Object.keys(character.powerstats)
   const name = `<h2>${character.name}</h2>`
   const img = `<img src ="${character.image.url}" height=200 width=200/>`
-  const stats = Object.keys(character.powerstats).map(stat => {
+  const stats = keys.map(stat => {
     return `<p>${statToEmoji[stat]} ${stat.toUpperCase()}: ${character.powerstats[stat]}</p>`
   }).join('')
-
+ 
   heroImageDiv.innerHTML = `${name}${img}${stats}`
 }
 
@@ -43,7 +45,12 @@ const getSearchSuperHero = (name) => {
       const hero = json.results[0]
       showHeroInfo(hero)
     })
+    .catch(() =>{
+      heroImageDiv.innerHTML = errorMessage
+    })
 }
+
+const errorMessage = `<h3>Character with given name not found.</h3>`
 
 const randomHero = () => {
   const numberOfHeroes = 731
