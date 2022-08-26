@@ -34,7 +34,7 @@ const showHeroInfo = (character) => {
     return `<p>${statToEmoji[stat]} ${stat.toUpperCase()}: ${character.powerstats[stat]}</p>`
   }).join('')
  
-  heroImageDiv.innerHTML = `${name}${img}${stats}`
+  heroImageDiv.innerHTML = `${name}${img}${stats}`;
 }
 
 
